@@ -1,4 +1,4 @@
-import { EXTENSION_JSON, EXTENSION_PNG } from '../helpers/constants';
+import { EXTENSION_JSON, EXTENSION_GIF } from '../helpers/constants';
 import path from 'path';
 import {
   createConfig,
@@ -49,19 +49,19 @@ export async function upload(
   const newFiles = [];
 
   files.forEach(f => {
-    if (!seen[f.replace(EXTENSION_PNG, '').split('/').pop()]) {
-      seen[f.replace(EXTENSION_PNG, '').split('/').pop()] = true;
+    if (!seen[f.replace(EXTENSION_GIF, '').split('/').pop()]) {
+      seen[f.replace(EXTENSION_GIF, '').split('/').pop()] = true;
       newFiles.push(f);
     }
   });
   existingInCache.forEach(f => {
     if (!seen[f]) {
       seen[f] = true;
-      newFiles.push(f + '.png');
+      newFiles.push(f + '.gif');
     }
   });
 
-  const images = newFiles.filter(val => path.extname(val) === EXTENSION_PNG);
+  const images = newFiles.filter(val => path.extname(val) === EXTENSION_GIF);
   const SIZE = images.length;
 
   const walletKeyPair = loadWalletKey(keypair);
@@ -80,7 +80,7 @@ export async function upload(
           const i = allIndexesInSlice[ind];
           const image = images[i];
           const imageName = path.basename(image);
-          const index = imageName.replace(EXTENSION_PNG, '');
+          const index = imageName.replace(EXTENSION_GIF, '');
 
           log.debug(`Processing file: ${i}`);
 
@@ -91,12 +91,12 @@ export async function upload(
               lastPrinted = i;
               log.info(`Processing file: ${i}, ${imageName}`);
             }
-            const manifestPath = image.replace(EXTENSION_PNG, EXTENSION_JSON);
+            const manifestPath = image.replace(EXTENSION_GIF, EXTENSION_JSON);
             const manifestContent = fs
               .readFileSync(manifestPath)
               .toString()
-              .replace(imageName, 'image.png')
-              .replace(imageName, 'image.png');
+              .replace(imageName, 'image.gif')
+              .replace(imageName, 'image.gif');
             const manifest = JSON.parse(manifestContent);
 
             const manifestBuffer = Buffer.from(JSON.stringify(manifest));

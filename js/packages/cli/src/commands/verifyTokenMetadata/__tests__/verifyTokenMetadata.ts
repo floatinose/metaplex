@@ -27,7 +27,7 @@ describe('`metaplex verify_token_metadata`', () => {
     expect(() =>
       verifyTokenMetadata({ files: mismatchedAssets }),
     ).toThrowErrorMatchingInlineSnapshot(
-      `"number of png files (0) is different than the number of json files (1)"`,
+      `"number of gif files (0) is different than the number of json files (1)"`,
     );
   });
 
@@ -38,7 +38,7 @@ describe('`metaplex verify_token_metadata`', () => {
     it(`invalidates ${path.relative(__dirname, invalidSchema)}`, () => {
       expect(() =>
         verifyTokenMetadata({
-          files: [invalidSchema, invalidSchema.replace('.json', '.png')],
+          files: [invalidSchema, invalidSchema.replace('.json', '.gif')],
         }),
       ).toThrowErrorMatchingSnapshot();
     });
@@ -91,8 +91,8 @@ describe('`metaplex verify_token_metadata`', () => {
 
   it('warns when using different image URIs', () => {
     verifyImageURL(
-      'https://google.com?ext=png',
-      [{ uri: 'https://google.com?ext=png', type: 'image/png' }],
+      'https://google.com?ext=gif',
+      [{ uri: 'https://google.com?ext=gif', type: 'image/gif' }],
       '0.json',
     );
     expect(spy).toHaveBeenCalledTimes(1);

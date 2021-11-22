@@ -249,12 +249,12 @@ export const getMetadata = (
   return {
     name: `${name}${index + 1}`,
     symbol,
-    image: `${index}.png`,
+    image: `${index}.gif`,
     properties: {
       files: [
         {
-          uri: `${index}.png`,
-          type: 'image/png',
+          uri: `${index}.gif`,
+          type: 'image/gif',
         },
       ],
       category: 'image',

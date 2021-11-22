@@ -20,7 +20,7 @@ async function fetchAssetCostToStore(fileSizes: number[]) {
 }
 
 async function upload(data: FormData, manifest, index) {
-  log.debug(`trying to upload ${index}.png: ${manifest.name}`);
+  log.debug(`trying to upload ${index}.gif: ${manifest.name}`);
   return await (
     await fetch(ARWEAVE_UPLOAD_ENDPOINT, {
       method: 'POST',
@@ -65,7 +65,7 @@ export async function arweaveUpload(
 ) {
   const fsStat = await stat(image);
   const estimatedManifestSize = estimateManifestSize([
-    'image.png',
+    'image.gif',
     'metadata.json',
   ]);
   const storageCost = await fetchAssetCostToStore([
@@ -96,8 +96,8 @@ export async function arweaveUpload(
   data.append('transaction', tx['txid']);
   data.append('env', env);
   data.append('file[]', fs.createReadStream(image), {
-    filename: `image.png`,
-    contentType: 'image/png',
+    filename: `image.gif`,
+    contentType: 'image/gif',
   });
   data.append('file[]', manifestBuffer, 'metadata.json');
 
@@ -107,11 +107,11 @@ export async function arweaveUpload(
     m => m.filename === 'manifest.json',
   );
   const imageFile = result.messages?.find(
-    m => m.filename === 'image.png',
+    m => m.filename === 'image.gif',
   );
   if (metadataFile?.transactionId) {
     const link = `https://arweave.net/${metadataFile.transactionId}`;
-    const imageLink = `https://arweave.net/${imageFile.transactionId}?ext=png`;
+    const imageLink = `https://arweave.net/${imageFile.transactionId}?ext=gif`;
     log.debug(`File uploaded: ${link}`);
     return [link, imageLink];
   } else {

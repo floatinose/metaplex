@@ -18,7 +18,7 @@ import {
   CONFIG_ARRAY_START,
   CONFIG_LINE_SIZE,
   EXTENSION_JSON,
-  EXTENSION_PNG,
+  EXTENSION_GIF,
   CANDY_MACHINE_PROGRAM_ID,
 } from './helpers/constants';
 import {
@@ -119,29 +119,29 @@ programCommand('upload')
       secretKey: ipfsInfuraSecret,
     };
 
-    const pngFileCount = files.filter(it => {
-      return it.endsWith(EXTENSION_PNG);
+    const gifFileCount = files.filter(it => {
+      return it.endsWith(EXTENSION_GIF);
     }).length;
     const jsonFileCount = files.filter(it => {
       return it.endsWith(EXTENSION_JSON);
     }).length;
 
     const parsedNumber = parseInt(number);
-    const elemCount = parsedNumber ? parsedNumber : pngFileCount;
+    const elemCount = parsedNumber ? parsedNumber : gifFileCount;
 
-    if (pngFileCount !== jsonFileCount) {
+    if (gifFileCount !== jsonFileCount) {
       throw new Error(
-        `number of png files (${pngFileCount}) is different than the number of json files (${jsonFileCount})`,
+        `number of gif files (${gifFileCount}) is different than the number of json files (${jsonFileCount})`,
       );
     }
 
-    if (elemCount < pngFileCount) {
+    if (elemCount < gifFileCount) {
       throw new Error(
-        `max number (${elemCount})cannot be smaller than the number of elements in the source folder (${pngFileCount})`,
+        `max number (${elemCount})cannot be smaller than the number of elements in the source folder (${gifFileCount})`,
       );
     }
 
-    log.info(`Beginning the upload for ${elemCount} (png+json) pairs`);
+    log.info(`Beginning the upload for ${elemCount} (gif+json) pairs`);
 
     const startMs = Date.now();
     log.info('started at: ' + startMs.toString());

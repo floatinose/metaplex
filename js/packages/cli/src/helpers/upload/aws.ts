@@ -47,7 +47,7 @@ export async function awsUpload(
     s3Client,
     awsS3Bucket,
     filename,
-    'image/png',
+    'image/gif',
     fileStream,
   );
 
@@ -59,7 +59,7 @@ export async function awsUpload(
   });
   const updatedManifestBuffer = Buffer.from(JSON.stringify(manifestJson));
 
-  const metadataFilename = filename.replace(/.png$/, '.json');
+  const metadataFilename = filename.replace(/.gif$/, '.json');
   const metadataUrl = await uploadFile(
     s3Client,
     awsS3Bucket,
