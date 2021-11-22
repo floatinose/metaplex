@@ -12,6 +12,12 @@ Metaplex is a protocol built on top of Solana that allows:
 
 Metaplex is comprised of two core components: an on-chain program, and a self-hosted front-end web3 application.
 
+## Forked repo
+
+This is a forked repo, not the official one. 
+
+Added GIF implementation in this branch, instead of the PNG one.
+
 ## Important NOTE
 
 Metaplex now follows a release versioning process called semantic versioning. If you are make a new market place, launching a candy machine or any live project that will handle real money, we recommend using a release tag. Using a release tag will ensure that new changes don't break your UI.
