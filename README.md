@@ -18,6 +18,8 @@ This is a forked repo, not the official one.
 
 Added GIF implementation in this branch, instead of the PNG one.
 
+If you facing issues at uploading again new gifs, delete the content inside .cache folder.
+
 ## Important NOTE
 
 Metaplex now follows a release versioning process called semantic versioning. If you are make a new market place, launching a candy machine or any live project that will handle real money, we recommend using a release tag. Using a release tag will ensure that new changes don't break your UI.
